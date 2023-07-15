@@ -6,9 +6,17 @@ import org.junit.jupiter.api.Test;
 public class TestBooker {
     //teste commit leonardo.
     //teste commit Everton.
+    //teste chicão comit
 
 String uri = "https://restful-booker.herokuapp.com/booking";
 String ct = "application/json";
+    @Test
+    @Order(3)
+
+  public void testUpdateBooking(){
+
+   }
+
 
     @Test
     @Order(4)
@@ -16,7 +24,6 @@ String ct = "application/json";
 
 
     }
-
 
 
 }
