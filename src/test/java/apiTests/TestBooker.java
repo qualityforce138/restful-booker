@@ -10,7 +10,7 @@ public class TestBooker {
     //teste commit Humberto
 
 String uri = "https://restful-booker.herokuapp.com/booking";
-String ct = "application/json";
+String content = "application/json";
 
     @Test
     @Order(1)
@@ -23,7 +23,7 @@ String ct = "application/json";
 
     @Test
     @Order(3)
-  // teste
+   // teste,,,,,,
    // teste conta
 
   public void testUpdateBooking(){
