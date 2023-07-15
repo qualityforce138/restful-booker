@@ -7,9 +7,20 @@ public class TestBooker {
     //teste commit leonardo.
     //teste commit Everton.
     //teste chicão comit
+    //teste commit Humberto
 
 String uri = "https://restful-booker.herokuapp.com/booking";
 String ct = "application/json";
+
+    @Test
+    @Order(1)
+    public void testGetBooking(){
+        // teste
+
+    }
+
+
+
     @Test
     @Order(3)
   // teste
