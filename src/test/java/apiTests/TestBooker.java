@@ -12,6 +12,7 @@ String uri = "https://restful-booker.herokuapp.com/booking";
 String ct = "application/json";
     @Test
     @Order(3)
+  // teste
 
   public void testUpdateBooking(){
 
