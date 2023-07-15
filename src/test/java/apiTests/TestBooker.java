@@ -2,7 +2,7 @@ package apiTests;
 
 public class TestBooker {
 
-    //teste commit leonardo
-    //teste commit Everton
+    //teste commit leonardo.
+    //teste commit Everton.
 
 }
