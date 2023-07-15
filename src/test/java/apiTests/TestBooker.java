@@ -29,7 +29,7 @@ public static String buscarArquivoJson(String arquivoJson) throws IOException {
     public void testGetBooking() throws IOException {
         // Dados de Entrada
         String jsonBody = buscarArquivoJson("src/test/resources/json/book.json");
-        // Para realizar o teste verificar verificar inicialmente os dados da lista
+        // Para realizar o teste verificar inicialmente os dados da lista
         // Configura
         given()
                 .contentType(ct)
@@ -51,7 +51,14 @@ public static String buscarArquivoJson(String arquivoJson) throws IOException {
 
     }
 
+    @Test
+    @Order(2)
+    // Inicio teste Leonardo
+    // teste Commit conta Quality
 
+    public void testCreateBooking(){
+
+    }
 
 
     @Test
