@@ -1,7 +1,10 @@
 package apiTests;
 
+import io.cucumber.java.en.Given;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class TestBooker {
     //teste commit leonardo.
@@ -15,9 +18,25 @@ String content = "application/json";
     @Test
     @Order(1)
     public void testGetBooking(){
-        // teste
+        // Dados de Entrega
+
+
+        // Configura
+        given()
+                .log().all()
+                .contentType(ct)
+                .body()
+        .when()
+
+        // Executa
+
+
+        // Valida
+
+
 
     }
+
 
 
 
