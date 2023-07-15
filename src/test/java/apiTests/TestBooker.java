@@ -12,8 +12,8 @@ public class TestBooker {
     //teste chicão comit
     //teste commit Humberto
 
-String uri = "https://restful-booker.herokuapp.com/booking";
-String content = "application/json";
+String baseURL = "https://restful-booker.herokuapp.com/booking";
+String ct = "application/json";
 
     @Test
     @Order(1)
