@@ -1,10 +1,13 @@
 package apiTests;
 
+import com.google.gson.Gson;
+import entity.BookEntity;
 import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,9 +16,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class TestBooker {
-
+String jsonBody;
 String uri = "https://restful-booker.herokuapp.com/booking/";
 String ct = "application/json";
+Gson gson =new Gson();
 private static int bookingId;
 
     public static String buscarArquivoJson(String arquivoJson) throws IOException {
@@ -54,10 +58,34 @@ private static int bookingId;
     // Inicio teste Leonardo
     // teste Commit conta Quality
 
-    public void testCreateBooking(){
+    public void testCreateBooking() {
+        // Configuração
+        // Dados de Entrada
+        BookEntity booking = new BookEntity();
+        booking.bookId = "01";
+        booking.titleBook = "Primeiro Livro";
+        booking.authorName = "Leonardo";
 
+        jsonBody = gson.toJson(booking);
 
+        // Executa
+        given()
+                .contentType(ct)
+                .log().all()
+                .body(jsonBody)
+        .when()
+                .post(uri + "book")
+        // Valida
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("bookId",is("01"))
+                .body("titleBook",is("Primeiro Livro"))
+                .body("authorName",is("Leonardo"))
+                .extract()
+        ;
     }
+
 
     @Test
     @Order(3)
@@ -87,7 +115,7 @@ private static int bookingId;
    // teste,,,,,,
    // teste conta
 
-  public void testUpdateBooking(){
+  public void testUpdateBooking(){  // Analizar
 
    }
 
