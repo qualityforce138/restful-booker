@@ -28,7 +28,7 @@ private static int bookingId;
 
     @Test
     @Order(1)
-    public void testGetBooking() throws IOException {
+    public void testGetBooking() throws IOException { // test
         // Dados de Entrada
         String jsonBody = buscarArquivoJson("src/test/resources/json/listarBook.json");
         // Para realizar o teste verificar inicialmente os dados da lista
@@ -45,10 +45,10 @@ private static int bookingId;
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("bookingid [0]",is(84))
-                .body("bookingid [1]",is(43))
-                .body("bookingid [2]",is(10))
-                .body("bookingid [4]",is(202))
+                .body("bookingid [0]",is(1202))
+                .body("bookingid [1]",is(3244))
+                .body("bookingid [2]",is(3358))
+                .body("bookingid [4]",is(229))
         ;
 
     }
