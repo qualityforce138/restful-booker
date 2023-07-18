@@ -112,7 +112,7 @@ private static int bookingId;
    // teste,,,,,,
    // teste conta
 
-  public void testUpdateBooking(){  // Analizar
+  public void testUpdateBooking(){  // Analizar RESERVA
 
    }
 
