@@ -24,12 +24,40 @@ private static int bookingId;
     }
 
     @Test
+    @Order(0)
+    public void testGetBookinglds() throws IOException {
+        // Inicio teste Humberto
+        // Dados de Entrada
+        String jsonBody = buscarArquivoJson("src/test/resources/json/getBookinglds.json");
+        // Para realizar o teste verificar inicialmente os dados da lista dinamica
+
+        // Configura
+        given()
+                .contentType(ct)
+                .log().all()
+                .body(jsonBody)
+        // Executa
+        .when()
+                .get(uri)
+        // Valida
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("bookingId [0]", is(53))
+                .body("bookingId [1]", is(306))
+                .body("bookingId [2]", is(848))
+                .body("bookingId [3]", is(117))
+        ;
+
+
+    }
+    @Test
     @Order(1)
     public void testGetBooking() throws IOException {
         // Inicio teste Humberto
         // Dados de Entrada
         String jsonBody = buscarArquivoJson("src/test/resources/json/listarBook.json");
-        // Para realizar o teste verificar inicialmente os dados da lista
+        // Para realizar o teste verificar inicialmente os dados da lista dinamica
         // Configura
         given()
                 .contentType(ct)
@@ -51,7 +79,7 @@ private static int bookingId;
 
     }
 
-    @Test
+   /* @Test
     @Order(2)
     // Inicio teste Leonardo
     // teste Commit conta Quality
@@ -83,7 +111,7 @@ private static int bookingId;
                 .extract()
         ;
     }
-
+*/
 
     @Test
     @Order(3)
@@ -93,9 +121,9 @@ private static int bookingId;
                 .contentType(ct)
                 .log().all()
                 .body(criarBook)
-                .when()
+        .when()
                 .post(uri)
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("booking.firstname",is("Everton"))
