@@ -1,13 +1,10 @@
 package apiTests;
 
 import com.google.gson.Gson;
-import entity.BookEntity;
-import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import java.awt.print.Book;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -115,7 +112,7 @@ private static int bookingId;
    // teste,,,,,,
    // teste conta
 
-  public void testUpdateBooking(){
+  public void testUpdateBooking(){  // Analizar RESERVA
 
    }
 
