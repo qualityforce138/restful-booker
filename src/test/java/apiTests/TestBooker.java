@@ -47,7 +47,7 @@ private static int bookingId;
                 .body("bookingId [1]", is(306))
                 .body("bookingId [2]", is(848))
                 .body("bookingId [3]", is(117))
-        ;
+        ; // fim do teste
 
 
     }
@@ -75,7 +75,7 @@ private static int bookingId;
                 .body("bookingid [1]",is(3244))
                 .body("bookingid [2]",is(3358))
                 .body("bookingid [4]",is(229))
-        ;
+        ; // fim do teste
 
     }
 
