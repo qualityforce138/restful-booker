@@ -25,7 +25,8 @@ private static int bookingId;
 
     @Test
     @Order(1)
-    public void testGetBooking() throws IOException { // test
+    public void testGetBooking() throws IOException {
+        // Inicio teste Humberto
         // Dados de Entrada
         String jsonBody = buscarArquivoJson("src/test/resources/json/listarBook.json");
         // Para realizar o teste verificar inicialmente os dados da lista
