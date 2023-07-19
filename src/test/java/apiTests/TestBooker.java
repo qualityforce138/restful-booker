@@ -79,7 +79,7 @@ private static int bookingId;
 
     }
 
-   /* @Test
+    @Test
     @Order(2)
     // Inicio teste Leonardo
     // teste Commit conta Quality
@@ -111,7 +111,7 @@ private static int bookingId;
                 .extract()
         ;
     }
-*/
+
 
     @Test
     @Order(3)
