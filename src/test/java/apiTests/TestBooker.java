@@ -84,32 +84,29 @@ private static int bookingId;
     // Inicio teste Leonardo
     // teste Commit conta Quality
 
-    public void testCreateBooking() {
-        // Configuração
-        // Dados de Entrada
-        BookEntity booking = new BookEntity();
-        booking.bookId = "01";
-        booking.titleBook = "Primeiro Livro";
-        booking.authorName = "Leonardo";
+    public void testCreateBooking() throws IOException {
+        String createBooking = buscarArquivoJson("src/test/resources/json/createBooking.json");
+        Response resp = (Response)
 
-        jsonBody = gson.toJson(booking);
+                // Executa
+                given ()
+                        .contentType (ct)
+                        .log ().all ()
+                        .body (createBooking)
+                        .when ()
+                        .post (uri)
+                        // Valida
+                        .then ()
+                        .log ().all ()
+                        .statusCode(200)
+                        .body("booking.firstname",is("Leonardo"))
+                        .body("booking.lastname",is("Garson"))
+                        .body("booking.totalprice",is(350))
+                        .body("booking.bookingdates.checkin",is("2023-07-19"))
+                        .extract();
+        bookingId = resp.jsonPath ().getInt ("bookingid");
+        System.out.println ("O ID a ser deletado é o: " + bookingId);
 
-        // Executa
-        given()
-                .contentType(ct)
-                .log().all()
-                .body(jsonBody)
-        .when()
-                .post(uri + "book")
-        // Valida
-        .then()
-                .log().all()
-                .statusCode(200)
-                .body("bookId",is("01"))
-                .body("titleBook",is("Primeiro Livro"))
-                .body("authorName",is("Leonardo"))
-                .extract()
-        ;
     }
 
 
@@ -122,6 +119,7 @@ private static int bookingId;
                 .log().all()
                 .body(criarBook)
         .when()
+
                 .post(uri)
         .then()
                 .log().all()
@@ -132,19 +130,41 @@ private static int bookingId;
                 .extract()
                 ;
         bookingId = resp.jsonPath().getInt("bookingid");
+
         System.out.println("O ID a ser deletado é o: " + bookingId);
     }
 
 
     @Test
     @Order(4)
-   // teste,,,,,,
-   // teste conta
+    public  void testUpdateBooking() throws IOException {  // Analizar RESERVA
+        //Atualiza e corrige teste de criação, verificando uma reserva atual pela URL
+        // inicio dados entrada
 
-  public void testUpdateBooking(){  // Analizar RESERVA
+        String jsonBody = buscarArquivoJson ("src/test/resources/json/updateBook.json");
 
-   }
+        String idAnalizar = ct;
+        //String bookingId = 111;
+        String corrigirId = uri;
 
+        //configuração
+        given()
+                .contentType(ct)
+                .accept(ct)
+                .cookie ("token","abc123")
+                .Authorization()
+                .log().all()
+                .body(jsonBody)
+                //Executa
+                .when()
+                .put (uri + "2208")
+                //Valida
+                .then()
+                .log().all()
+                .statusCode(200);
+
+
+    }
 
     @Test
     @Order(5)

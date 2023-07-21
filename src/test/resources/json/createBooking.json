@@ -1,0 +1,11 @@
+{
+  "firstname": "Leonardo",
+  "lastname": "Garson",
+  "totalprice": 350,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2023-07-19",
+    "checkout": "2023-07-19"
+  },
+  "additionalneeds": "JantarIncluso"
+}
