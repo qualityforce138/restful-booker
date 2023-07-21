@@ -1,120 +1,28 @@
 package apiTests;
 
-import com.google.gson.Gson;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestBooker {
-String jsonBody;
-String uri = "https://restful-booker.herokuapp.com/booking/";
-String ct = "application/json";
-Gson gson =new Gson();
-private static int bookingId;
+    String uri = "https://restful-booker.herokuapp.com/booking/";
+    String ct = "application/json";
+    String authorizationHeader = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
+    private static int bookingId;
 
     public static String buscarArquivoJson(String arquivoJson) throws IOException {
         return new String(Files.readAllBytes(Paths.get(arquivoJson)));
     }
 
     @Test
-    @Order(0)
-    public void testGetBookinglds() throws IOException {
-        // Inicio teste Humberto
-        // Dados de Entrada
-        String jsonBody = buscarArquivoJson("src/test/resources/json/getBookinglds.json");
-        // Para realizar o teste verificar inicialmente os dados da lista dinamica
-
-        // Configura
-        given()
-                .contentType(ct)
-                .log().all()
-                .body(jsonBody)
-        // Executa
-        .when()
-                .get(uri)
-        // Valida
-        .then()
-                .log().all()
-                .statusCode(200)
-                .body("bookingId [0]", is(53))
-                .body("bookingId [1]", is(306))
-                .body("bookingId [2]", is(848))
-                .body("bookingId [3]", is(117))
-        ; // fim do teste
-
-
-    }
-    @Test
+    @DisplayName("Testando o cadastro de Reserva")
     @Order(1)
-    public void testGetBooking() throws IOException {
-        // Inicio teste Humberto
-        // Dados de Entrada
-        String jsonBody = buscarArquivoJson("src/test/resources/json/listarBook.json");
-        // Para realizar o teste verificar inicialmente os dados da lista dinamica
-        // Configura
-        given()
-                .contentType(ct)
-                .log().all()
-                .body(jsonBody)
-        // Executa
-        .when()
-                .get(uri)
-
-        // Valida
-        .then()
-                .log().all()
-                .statusCode(200)
-                .body("bookingid [0]",is(1202))
-                .body("bookingid [1]",is(3244))
-                .body("bookingid [2]",is(3358))
-                .body("bookingid [4]",is(229))
-        ; // fim do teste
-
-    }
-
-    @Test
-    @Order(2)
-    // Inicio teste Leonardo
-    // teste Commit conta Quality
-
-    public void testCreateBooking() {
-        // Configuração
-        // Dados de Entrada
-        BookEntity booking = new BookEntity();
-        booking.bookId = "01";
-        booking.titleBook = "Primeiro Livro";
-        booking.authorName = "Leonardo";
-
-        jsonBody = gson.toJson(booking);
-
-        // Executa
-        given()
-                .contentType(ct)
-                .log().all()
-                .body(jsonBody)
-        .when()
-                .post(uri + "book")
-        // Valida
-        .then()
-                .log().all()
-                .statusCode(200)
-                .body("bookId",is("01"))
-                .body("titleBook",is("Primeiro Livro"))
-                .body("authorName",is("Leonardo"))
-                .extract()
-        ;
-    }
-
-
-    @Test
-    @Order(3)
     public void testCadastrarBook() throws IOException {
         String criarBook = buscarArquivoJson("src/test/resources/json/criarBook.json");
         Response resp = (Response) given()
@@ -135,36 +43,74 @@ private static int bookingId;
         System.out.println("O ID a ser deletado é o: " + bookingId);
     }
 
+    @Test
+    @DisplayName("Testando a atualizaçãod de um cadastro de Reserva")
+    @Order(2)
+    public void testAtualizarBook() throws IOException {
+        String atualizarBook = buscarArquivoJson("src/test/resources/json/atualizarBook.json");
+        given()
+                .contentType(ct)
+                .log().all()
+                .header("Authorization", authorizationHeader)
+                .body(atualizarBook)
+        .when()
+                .put(uri + bookingId)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("firstname",is("Altera"));
+        System.out.println("O ID a ser atualizado será o: " + bookingId);
+    }
 
     @Test
+    @DisplayName("Testando a busca da reserva criada previamente")
+    @Order(3)
+    public void testGetBookingPorId() throws IOException {
+        given()
+                .contentType(ct)
+                .log().all()
+        .when()
+                .get(uri+bookingId)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("firstname", is("Altera"))
+                ;
+        System.out.println("O ID a ser localizado será o: " + bookingId);
+    }
+
+    @Test
+    @DisplayName("Testando a listagem das reservas, visando apenas a resposta de sucesso.")
     @Order(4)
-   // teste,,,,,,
-   // teste conta
-
-  public void testUpdateBooking(){  // Analizar RESERVA
-
-   }
-
+    public void testGetBooking() throws IOException {
+        String buscarBooking = buscarArquivoJson("src/test/resources/json/listarBook.json");
+        given()
+                .contentType(ct)
+                .log().all()
+                .body(buscarBooking)
+        .when()
+                .get(uri)
+        .then()
+                .log().all()
+                .statusCode(200);
+        System.out.println("Todos foram listados.");
+    }
 
     @Test
+    @DisplayName("Testando a exclusão da reserva cadastrada.")
     @Order(5)
     public void testExcluirBooking(){
-        //Execute o teste de criação, verificando oid criado para ser excluido
-        String authorizationHeader = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
-        String bookingId = "248";
-        String idExcluir = uri + bookingId;
-
         given()
                 .contentType(ct)
                 .accept(ct)
                 .log().all()
                 .header("Authorization", authorizationHeader)
         .when()
-                .delete(idExcluir)
+                .delete(uri + bookingId)
         .then()
                 .log().all()
                 .statusCode(201)
                 .body(is("Created"));
-        ;
+        System.out.println("O ID deletado foi o: " + bookingId);        ;
     }
 }

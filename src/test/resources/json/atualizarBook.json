@@ -1,0 +1,11 @@
+{
+  "firstname": "Altera",
+  "lastname": "Alterado2",
+  "totalprice": 8080,
+  "depositpaid": false,
+  "bookingdates": {
+    "checkin": "2023-07-14",
+    "checkout": "2023-07-14"
+  },
+  "additionalneeds": "AlmoçoFora"
+}
