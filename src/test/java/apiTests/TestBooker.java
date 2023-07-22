@@ -152,7 +152,7 @@ private static int bookingId;
                 .contentType(ct)
                 .accept(ct)
                 .cookie ("token","abc123")
-                .Authorization()
+                //.Authorization()
                 .log().all()
                 .body(jsonBody)
                 //Executa
@@ -162,7 +162,7 @@ private static int bookingId;
                 .then()
                 .log().all()
                 .statusCode(200);
-
+                //teste apos revisão e inicio com march comit
 
     }
 
