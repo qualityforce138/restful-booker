@@ -2,3 +2,4 @@ consumer*pom
 /target*
 misc.xml
 *.class
+.vscode/settings.json
