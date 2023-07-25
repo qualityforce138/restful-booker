@@ -1,0 +1,6 @@
+consumer*pom
+/target*
+misc.xml
+*.class
+.vscode/settings.json
+target/test-classes/apiTests/TestBooker.class

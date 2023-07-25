@@ -3,6 +3,7 @@ package apiTests;
 import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,18 +11,45 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class TestBooker {
-String jsonBody;
-String uri = "https://restful-booker.herokuapp.com/booking/";
-String ct = "application/json";
-Gson gson =new Gson();
-private static int bookingId;
+    String jsonBody;
+    String uri = "https://restful-booker.herokuapp.com/booking/";
+    String ct = "application/json";
+    Gson gson =new Gson();
+    private static String token;
+    private static int bookingId;
 
     public static String buscarArquivoJson(String arquivoJson) throws IOException {
         return new String(Files.readAllBytes(Paths.get(arquivoJson)));
     }
+    @Tag("login")
+    @Test
+    public void geraToken () throws IOException {
+        // Dados de Entrada
+        String jsonBody = buscarArquivoJson("src/test/resources/json/userToken.json");
+
+        Response resp = (Response)
+                // Executa
+                given ()
+                        .contentType (ct)
+                        .log ().all ()
+                        .body (jsonBody)
+                        .when ()
+                        .post ("https://restful-booker.herokuapp.com/auth")
+                        // Valida
+                        .then ()
+                        .log ().all ()
+                        .statusCode(200)
+                        .body("token",not(emptyOrNullString()))
+                        .extract();
+        token = resp.jsonPath().getString("token");
+        System.out.println("Token obtido: " + token);
+
+    }
+
+
 
     @Test
     @Order(0)
@@ -36,11 +64,11 @@ private static int bookingId;
                 .contentType(ct)
                 .log().all()
                 .body(jsonBody)
-        // Executa
-        .when()
+                // Executa
+                .when()
                 .get(uri)
-        // Valida
-        .then()
+                // Valida
+                .then()
                 .log().all()
                 .statusCode(200)
                 .body("bookingId [0]", is(53))
@@ -63,12 +91,12 @@ private static int bookingId;
                 .contentType(ct)
                 .log().all()
                 .body(jsonBody)
-        // Executa
-        .when()
+                // Executa
+                .when()
                 .get(uri)
 
-        // Valida
-        .then()
+                // Valida
+                .then()
                 .log().all()
                 .statusCode(200)
                 .body("bookingid [0]",is(1202))
@@ -80,6 +108,7 @@ private static int bookingId;
     }
 
     @Test
+    @Tag("login")
     @Order(2)
     // Inicio teste Leonardo
     // teste Commit conta Quality
@@ -118,10 +147,10 @@ private static int bookingId;
                 .contentType(ct)
                 .log().all()
                 .body(criarBook)
-        .when()
+                .when()
 
                 .post(uri)
-        .then()
+                .then()
                 .log().all()
                 .statusCode(200)
                 .body("booking.firstname",is("Everton"))
@@ -135,6 +164,7 @@ private static int bookingId;
     }
 
 
+    @Tag("login")
     @Test
     @Order(4)
     public  void testUpdateBooking() throws IOException {  // Analizar RESERVA
@@ -151,21 +181,20 @@ private static int bookingId;
         given()
                 .contentType(ct)
                 .accept(ct)
-                .cookie ("token","abc123")
-                //.Authorization()
+                .cookie ("token", token)
                 .log().all()
                 .body(jsonBody)
                 //Executa
                 .when()
-                .put (uri + "2208")
+                .put (uri + bookingId)
                 //Valida
                 .then()
                 .log().all()
                 .statusCode(200);
-                //teste apos revisão e inicio com march comit
+
 
     }
-
+    //.authorization()
     @Test
     @Order(5)
     public void testExcluirBooking(){
@@ -179,9 +208,9 @@ private static int bookingId;
                 .accept(ct)
                 .log().all()
                 .header("Authorization", authorizationHeader)
-        .when()
+                .when()
                 .delete(idExcluir)
-        .then()
+                .then()
                 .log().all()
                 .statusCode(201)
                 .body(is("Created"));
