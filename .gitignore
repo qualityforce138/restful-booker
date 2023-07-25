@@ -1,3 +1,5 @@
 consumer*pom
 /target*
 misc.xml
+*.class
+settings.json
