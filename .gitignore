@@ -1,3 +1,4 @@
 consumer*pom
 /target*
 misc.xml
+*.class
