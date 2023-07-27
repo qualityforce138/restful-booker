@@ -6,15 +6,16 @@ import org.junit.jupiter.api.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestBooker {
+    private static int bookingId;
     String uri = "https://restful-booker.herokuapp.com/booking/";
     String ct = "application/json";
     String authorizationHeader = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
-    private static int bookingId;
 
     public static String buscarArquivoJson(String arquivoJson) throws IOException {
         return new String(Files.readAllBytes(Paths.get(arquivoJson)));
@@ -29,16 +30,15 @@ public class TestBooker {
                 .contentType(ct)
                 .log().all()
                 .body(criarBook)
-        .when()
+                .when()
                 .post(uri)
-        .then()
+                .then()
                 .log().all()
                 .statusCode(200)
-                .body("booking.firstname",is("Everton"))
-                .body("booking.totalprice",is(5050))
-                .body("booking.bookingdates.checkin",is("2023-07-14"))
-                .extract()
-                ;
+                .body("booking.firstname", is("Everton"))
+                .body("booking.totalprice", is(5050))
+                .body("booking.bookingdates.checkin", is("2023-07-14"))
+                .extract();
         bookingId = resp.jsonPath().getInt("bookingid");
         System.out.println("O ID a ser deletado é o: " + bookingId);
     }
@@ -53,12 +53,12 @@ public class TestBooker {
                 .log().all()
                 .header("Authorization", authorizationHeader)
                 .body(atualizarBook)
-        .when()
+                .when()
                 .put(uri + bookingId)
-        .then()
+                .then()
                 .log().all()
                 .statusCode(200)
-                .body("firstname",is("Altera"));
+                .body("firstname", is("Altera"));
         System.out.println("O ID a ser atualizado será o: " + bookingId);
     }
 
@@ -69,13 +69,13 @@ public class TestBooker {
         given()
                 .contentType(ct)
                 .log().all()
-        .when()
-                .get(uri+bookingId)
-        .then()
+                .when()
+                .get(uri + bookingId)
+                .then()
                 .log().all()
                 .statusCode(200)
                 .body("firstname", is("Altera"))
-                ;
+        ;
         System.out.println("O ID a ser localizado será o: " + bookingId);
     }
 
@@ -88,9 +88,9 @@ public class TestBooker {
                 .contentType(ct)
                 .log().all()
                 .body(buscarBooking)
-        .when()
+                .when()
                 .get(uri)
-        .then()
+                .then()
                 .log().all()
                 .statusCode(200);
         System.out.println("Todos foram listados.");
@@ -99,18 +99,20 @@ public class TestBooker {
     @Test
     @DisplayName("Testando a exclusão da reserva cadastrada.")
     @Order(5)
-    public void testExcluirBooking(){
+
+    public void testExcluirBooking() {
         given()
                 .contentType(ct)
                 .accept(ct)
                 .log().all()
                 .header("Authorization", authorizationHeader)
-        .when()
+                .when()
                 .delete(uri + bookingId)
-        .then()
+                .then()
                 .log().all()
                 .statusCode(201)
                 .body(is("Created"));
-        System.out.println("O ID deletado foi o: " + bookingId);        ;
+        System.out.println("O ID deletado foi o: " + bookingId);
+        ;
     }
 }
