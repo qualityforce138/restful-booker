@@ -2,9 +2,7 @@ package apiTests;
 
 import com.google.gson.Gson;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,11 +10,13 @@ import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class TestBooker {
     String jsonBody;
     String uri = "https://restful-booker.herokuapp.com/booking/";
     String ct = "application/json";
+    String authorizationHeader = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
     Gson gson =new Gson();
     private static String token;
     private static int bookingId;
@@ -71,10 +71,6 @@ public class TestBooker {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body("bookingId [0]", is(53))
-                .body("bookingId [1]", is(306))
-                .body("bookingId [2]", is(848))
-                .body("bookingId [3]", is(117))
         ; // fim do teste
 
 
@@ -99,10 +95,6 @@ public class TestBooker {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body("bookingid [0]",is(1202))
-                .body("bookingid [1]",is(3244))
-                .body("bookingid [2]",is(3358))
-                .body("bookingid [4]",is(229))
         ; // fim do teste
 
     }
@@ -173,15 +165,16 @@ public class TestBooker {
 
         String jsonBody = buscarArquivoJson ("src/test/resources/json/updateBook.json");
 
-        String idAnalizar = ct;
+        //String idAnalizar = ct;
         //String bookingId = 111;
-        String corrigirId = uri;
+        //String corrigirId = uri;
 
         //configuração
         given()
                 .contentType(ct)
                 .accept(ct)
-                .cookie ("token", token)
+                //.cookie ("token", token)
+                .header("Authorization", authorizationHeader)
                 .log().all()
                 .body(jsonBody)
                 //Executa
@@ -199,9 +192,8 @@ public class TestBooker {
     @Order(5)
     public void testExcluirBooking(){
         //Execute o teste de criação, verificando oid criado para ser excluido
-        String authorizationHeader = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
-        String bookingId = "248";
-        String idExcluir = uri + bookingId;
+        //String bookingId = bookingId;
+        //String idExcluir = uri + bookingId;
 
         given()
                 .contentType(ct)
@@ -209,7 +201,7 @@ public class TestBooker {
                 .log().all()
                 .header("Authorization", authorizationHeader)
                 .when()
-                .delete(idExcluir)
+                .delete( uri + bookingId)
                 .then()
                 .log().all()
                 .statusCode(201)
