@@ -10,45 +10,46 @@ import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class TestBooker {
+    private static String token;
+    private static int bookingId;
     String jsonBody;
     String uri = "https://restful-booker.herokuapp.com/booking/";
     String ct = "application/json";
     String authorizationHeader = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
-    Gson gson =new Gson();
-    private static String token;
-    private static int bookingId;
+    Gson gson = new Gson();
 
     public static String buscarArquivoJson(String arquivoJson) throws IOException {
         return new String(Files.readAllBytes(Paths.get(arquivoJson)));
     }
+
     @Tag("login")
     @Test
-    public void geraToken () throws IOException {
-        // Dados de Entrada
+    public void geraToken() throws IOException {
+        //  Dados de Entrada
         String jsonBody = buscarArquivoJson("src/test/resources/json/userToken.json");
 
         Response resp = (Response)
                 // Executa
-                given ()
-                        .contentType (ct)
-                        .log ().all ()
-                        .body (jsonBody)
-                        .when ()
-                        .post ("https://restful-booker.herokuapp.com/auth")
+                given()
+                        .contentType(ct)
+                        .log().all()
+                        .body(jsonBody)
+                        .when()
+                        .post("https://restful-booker.herokuapp.com/auth")
                         // Valida
-                        .then ()
-                        .log ().all ()
+                        .then()
+                        .log().all()
                         .statusCode(200)
-                        .body("token",not(emptyOrNullString()))
+                        .body("token", not(emptyOrNullString()))
                         .extract();
         token = resp.jsonPath().getString("token");
         System.out.println("Token obtido: " + token);
 
     }
-
 
 
     @Test
@@ -75,6 +76,7 @@ public class TestBooker {
 
 
     }
+
     @Test
     @Order(1)
     public void testGetBooking() throws IOException {
@@ -110,23 +112,23 @@ public class TestBooker {
         Response resp = (Response)
 
                 // Executa
-                given ()
-                        .contentType (ct)
-                        .log ().all ()
-                        .body (createBooking)
-                        .when ()
-                        .post (uri)
+                given()
+                        .contentType(ct)
+                        .log().all()
+                        .body(createBooking)
+                        .when()
+                        .post(uri)
                         // Valida
-                        .then ()
-                        .log ().all ()
+                        .then()
+                        .log().all()
                         .statusCode(200)
-                        .body("booking.firstname",is("Leonardo"))
-                        .body("booking.lastname",is("Garson"))
-                        .body("booking.totalprice",is(350))
-                        .body("booking.bookingdates.checkin",is("2023-07-19"))
+                        .body("booking.firstname", is("Leonardo"))
+                        .body("booking.lastname", is("Garson"))
+                        .body("booking.totalprice", is(350))
+                        .body("booking.bookingdates.checkin", is("2023-07-19"))
                         .extract();
-        bookingId = resp.jsonPath ().getInt ("bookingid");
-        System.out.println ("O ID a ser deletado é o: " + bookingId);
+        bookingId = resp.jsonPath().getInt("bookingid");
+        System.out.println("O ID a ser deletado é o: " + bookingId);
 
     }
 
@@ -145,11 +147,10 @@ public class TestBooker {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body("booking.firstname",is("Everton"))
-                .body("booking.totalprice",is(5050))
-                .body("booking.bookingdates.checkin",is("2023-07-14"))
-                .extract()
-                ;
+                .body("booking.firstname", is("Everton"))
+                .body("booking.totalprice", is(5050))
+                .body("booking.bookingdates.checkin", is("2023-07-14"))
+                .extract();
         bookingId = resp.jsonPath().getInt("bookingid");
 
         System.out.println("O ID a ser deletado é o: " + bookingId);
@@ -159,11 +160,11 @@ public class TestBooker {
     @Tag("login")
     @Test
     @Order(4)
-    public  void testUpdateBooking() throws IOException {  // Analizar RESERVA
+    public void testUpdateBooking() throws IOException {  // Analizar RESERVA
         //Atualiza e corrige teste de criação, verificando uma reserva atual pela URL
         // inicio dados entrada
 
-        String jsonBody = buscarArquivoJson ("src/test/resources/json/updateBook.json");
+        String jsonBody = buscarArquivoJson("src/test/resources/json/updateBook.json");
 
         //String idAnalizar = ct;
         //String bookingId = 111;
@@ -179,7 +180,7 @@ public class TestBooker {
                 .body(jsonBody)
                 //Executa
                 .when()
-                .put (uri + bookingId)
+                .put(uri + bookingId)
                 //Valida
                 .then()
                 .log().all()
@@ -187,10 +188,11 @@ public class TestBooker {
 
 
     }
+
     //.authorization()
     @Test
     @Order(5)
-    public void testExcluirBooking(){
+    public void testExcluirBooking() {
         //Execute o teste de criação, verificando oid criado para ser excluido
         //String bookingId = bookingId;
         //String idExcluir = uri + bookingId;
@@ -201,7 +203,7 @@ public class TestBooker {
                 .log().all()
                 .header("Authorization", authorizationHeader)
                 .when()
-                .delete( uri + bookingId)
+                .delete(uri + bookingId)
                 .then()
                 .log().all()
                 .statusCode(201)
