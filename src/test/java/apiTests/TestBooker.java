@@ -29,7 +29,7 @@ public class TestBooker {
     @Tag("login")
     @Test
     public void geraToken() throws IOException {
-        //  Dados de Entrada
+
         String jsonBody = buscarArquivoJson("src/test/resources/json/userToken.json");
 
         Response resp = (Response)
