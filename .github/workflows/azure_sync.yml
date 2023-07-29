@@ -5,12 +5,12 @@ on:
     branches:
       - main
 
-- uses: azure/appservice-deploy@v1
-  with:
-    app_service_name: my-app-service
-    branch: main
-    password: ${{ secrets.AZURE_PASSWORD }}
-    
+uses: azure/appservice-deploy@v1
+with:
+  app_service_name: my-app-service
+  branch: main
+  password: ${{ secrets.AZURE_PASSWORD }}
+
 jobs:
   sync_with_azure:
     runs-on: ubuntu-latest
@@ -19,13 +19,11 @@ jobs:
       - name: Checkout do código-fonte
         uses: actions/checkout@v2
 
-      - name: Configurar Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
       - name: Atualizar Azure Repos
         run: |
-          git remote add azure https://QualityForce@dev.azure.com/QualityForce/Quality%20Force%20-%20Squad138_2230/_git/Quality%20Force%20-%20Squad138_2230
-          git pull azure main
-          git push azure main
+          git remote add azure https://<rln2qey6wb7gq6jhtbsexqyci3g4tii7j37kq77pahozhnu2kogq>@dev.azure.com/QualityForce/Quality%20Force%20-%20Squad138_2230/_git/Quality%20Force%20-%20Squad138_2230
+          git config --global credential.helper store # Configura para armazenar as credenciais
+          git fetch azure --tags # Recupera as tags do repositório remoto
+          git checkout main
+          git merge azure/main # Realiza o merge das alterações do repositório remoto com o branch local
+          git push azure main # Envia as alterações para o repositório remoto
