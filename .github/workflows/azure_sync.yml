@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+- uses: azure/appservice-deploy@v1
+  with:
+    app_service_name: my-app-service
+    branch: main
+    password: ${{ secrets.AZURE_PASSWORD }}
+    
 jobs:
   sync_with_azure:
     runs-on: ubuntu-latest
