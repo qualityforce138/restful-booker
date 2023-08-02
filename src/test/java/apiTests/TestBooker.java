@@ -186,6 +186,9 @@ public class TestBooker {
                 .log().all()
                 .statusCode(200);
 
+        // atualização dados acertos lista
+//
+        //teste manch puch, e nicio teste geral e comit
 
     }
 

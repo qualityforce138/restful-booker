@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fad89611-86ac-48c4-a1dc-76a066419c2d" name="Changes" comment="REVISÃO COM LUCIANO 21/07/23&#10;/teste apos revisão e inicio com march comit 22/07&#10;dayli alinhamento xml trader">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiTests/TestBooker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/apiTests/TestBooker.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="transitochicao" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2SrSVB4n2trv21Lrj66SmLgD75r" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.TestBooker">
+    <configuration name="TestBooker" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="restful-booker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="apiTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="apiTests" />
+      <option name="MAIN_CLASS_NAME" value="apiTests.TestBooker" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBooker.testCreateBooking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="restful-booker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="apiTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="apiTests" />
+      <option name="MAIN_CLASS_NAME" value="apiTests.TestBooker" />
+      <option name="METHOD_NAME" value="testCreateBooking" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBooker.testGetBooking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="restful-booker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="apiTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="apiTests" />
+      <option name="MAIN_CLASS_NAME" value="apiTests.TestBooker" />
+      <option name="METHOD_NAME" value="testGetBooking" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBooker.testGetBookinglds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="restful-booker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="apiTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="apiTests" />
+      <option name="MAIN_CLASS_NAME" value="apiTests.TestBooker" />
+      <option name="METHOD_NAME" value="testGetBookinglds" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBooker.testUpdateBooking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="restful-booker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="apiTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="apiTests" />
+      <option name="MAIN_CLASS_NAME" value="apiTests.TestBooker" />
+      <option name="METHOD_NAME" value="testUpdateBooking" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="teste com tags" type="JUnit" factoryName="JUnit">
+      <module name="restful-booker" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="tags" />
+      <tag value="login" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.teste com tags" />
+      <item itemvalue="JUnit.TestBooker.testGetBooking" />
+      <item itemvalue="JUnit.TestBooker" />
+      <item itemvalue="JUnit.TestBooker.testCreateBooking" />
+      <item itemvalue="JUnit.TestBooker.testGetBookinglds" />
+      <item itemvalue="JUnit.TestBooker.testUpdateBooking" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestBooker" />
+        <item itemvalue="JUnit.TestBooker.testUpdateBooking" />
+        <item itemvalue="JUnit.TestBooker.testGetBookinglds" />
+        <item itemvalue="JUnit.TestBooker.testCreateBooking" />
+        <item itemvalue="JUnit.TestBooker.testGetBooking" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fad89611-86ac-48c4-a1dc-76a066419c2d" name="Changes" comment="" />
+      <created>1689903227926</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689903227926</updated>
+    </task>
+    <task id="LOCAL-00001" summary="REVISÃO COM LUCIANO">
+      <created>1689909656077</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689909656077</updated>
+    </task>
+    <task id="LOCAL-00002" summary="REVISÃO COM LUCIANO 21/07/23&#10;/teste apos revisão e inicio com march comit 22/07">
+      <created>1690000348298</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1690000348298</updated>
+    </task>
+    <task id="LOCAL-00003" summary="REVISÃO COM LUCIANO 21/07/23&#10;/teste apos revisão e inicio com march comit 22/07&#10;dayli alinhamento xml trader">
+      <created>1690252138844</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1690252138844</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="REVISÃO COM LUCIANO" />
+    <MESSAGE value="REVISÃO COM LUCIANO 21/07/23&#10;/teste apos revisão e inicio com march comit 22/07" />
+    <MESSAGE value="REVISÃO COM LUCIANO 21/07/23&#10;/teste apos revisão e inicio com march comit 22/07&#10;dayli alinhamento xml trader" />
+    <option name="LAST_COMMIT_MESSAGE" value="REVISÃO COM LUCIANO 21/07/23&#10;/teste apos revisão e inicio com march comit 22/07&#10;dayli alinhamento xml trader" />
+  </component>
+</project>
